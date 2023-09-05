@@ -27,7 +27,7 @@
 //! }
 //! ```
 
-use reqwest::*;
+use reqwest::{Response, Result, StatusCode};
 use serde::Deserialize;
 use std::env::VarError;
 
@@ -55,8 +55,8 @@ pub struct ChainInfo {
     last_irreversible_block_time: String,
 }
 
-#[tokio::main]
-pub async fn get_block() -> Result<()> {
+/// Get API URL
+fn get_api_url() -> Result<String> {
     dotenv::from_path("./.env").expect("Failed in loading .env file");
     let url = std::env::var("API_URL")
         .and_then(|x| {
@@ -67,15 +67,26 @@ pub async fn get_block() -> Result<()> {
             }
         })
         .expect("Failed to get API URL");
-    let url = format!("{}/v1/chainget_info", url);
+    Ok(url)
+}
 
-    // get body
-    let body = reqwest::get(url).await?.json::<ChainInfo>().await?;
-    println!("body: {:?}", body);
+/// Get response
+pub(crate) async fn get_response() -> Result<Response> {
+    let url = get_api_url()?;
+    let url = format!("{}/v1/chain/get_info", url);
 
-    // let body = response.json::<ChainInfo>().await?;
-    // let response = reqwest::get(url).await?;
-    // println!("status code: {:?}", response.status());
+    let res = reqwest::get(&url).await?;
 
-    Ok(())
+    if res.status() != StatusCode::OK {
+        return Err(res.status().as_u16()).unwrap();
+    }
+
+    Ok(res)
+}
+
+/// Get chain info
+pub async fn get_chain_info(res: Response) -> Result<ChainInfo> {
+    let chain_info = res.json::<ChainInfo>().await?;
+
+    Ok(chain_info)
 }
