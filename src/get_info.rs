@@ -1,5 +1,7 @@
 //! Get information of chain
 //!
+//! Using curl: `curl https://eos.genereos.io/v1/chain/get_info`
+//!
 //! RPC API: /v1/chain/get_info
 //! Sample response:
 //! ```json
@@ -27,9 +29,9 @@
 //! }
 //! ```
 
-use reqwest::{Response, Result, StatusCode};
+use crate::utils::get_api_url;
+use reqwest::{Client, Response, Result, StatusCode};
 use serde::Deserialize;
-use std::env::VarError;
 
 #[derive(Debug, Deserialize)]
 pub struct ChainInfo {
@@ -55,23 +57,8 @@ pub struct ChainInfo {
     last_irreversible_block_time: String,
 }
 
-/// Get API URL
-fn get_api_url() -> Result<String> {
-    dotenv::from_path("./.env").expect("Failed in loading .env file");
-    let url = std::env::var("API_URL")
-        .and_then(|x| {
-            if x.is_empty() {
-                Err(VarError::NotPresent)
-            } else {
-                Ok(x)
-            }
-        })
-        .expect("Failed to get API URL");
-    Ok(url)
-}
-
 /// Get response
-pub(crate) async fn get_response() -> Result<Response> {
+pub async fn get_response_chain_info() -> Result<Response> {
     let url = get_api_url()?;
     let url = format!("{}/v1/chain/get_info", url);
 
