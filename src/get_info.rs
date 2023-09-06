@@ -90,3 +90,143 @@ pub async fn get_chain_info(res: Response) -> Result<ChainInfo> {
 
     Ok(chain_info)
 }
+
+/// Get server version
+pub async fn get_server_version(res: Response) -> Result<String> {
+    let chain_info = res.json::<ChainInfo>().await?;
+    let server_version = chain_info.server_version;
+    Ok(server_version)
+}
+
+/// Get chain id
+pub async fn get_chain_id(res: Response) -> Result<String> {
+    let chain_info = res.json::<ChainInfo>().await?;
+    let chain_id = chain_info.chain_id;
+    Ok(chain_id)
+}
+
+/// Get head block num
+pub async fn get_head_block_num(res: Response) -> Result<u32> {
+    let chain_info = res.json::<ChainInfo>().await?;
+    let head_block_num = chain_info.head_block_num;
+    Ok(head_block_num)
+}
+
+/// Get last irreversible block number
+pub async fn get_last_irreversible_block_num(res: Response) -> Result<u32> {
+    let chain_info = res.json::<ChainInfo>().await?;
+    let last_irreversible_block_num = chain_info.last_irreversible_block_num;
+    Ok(last_irreversible_block_num)
+}
+
+/// Get last irreversible block id
+pub async fn get_last_irreversible_block_id(res: Response) -> Result<String> {
+    let chain_info = res.json::<ChainInfo>().await?;
+    let last_irreversible_block_id = chain_info.last_irreversible_block_id;
+    Ok(last_irreversible_block_id)
+}
+
+/// Get head block id
+pub async fn get_head_block_id(res: Response) -> Result<String> {
+    let chain_info = res.json::<ChainInfo>().await?;
+    let head_block_id = chain_info.head_block_id;
+    Ok(head_block_id)
+}
+
+/// Get head block time
+pub async fn get_head_block_time(res: Response) -> Result<String> {
+    let chain_info = res.json::<ChainInfo>().await?;
+    let head_block_time = chain_info.head_block_time;
+    Ok(head_block_time)
+}
+
+/// Get head block producer
+pub async fn get_head_block_producer(res: Response) -> Result<String> {
+    let chain_info = res.json::<ChainInfo>().await?;
+    let head_block_producer = chain_info.head_block_producer;
+    Ok(head_block_producer)
+}
+
+/// Get virtual block cpu limit
+pub async fn get_virtual_block_cpu_limit(res: Response) -> Result<u32> {
+    let chain_info = res.json::<ChainInfo>().await?;
+    let virtual_block_cpu_limit = chain_info.virtual_block_cpu_limit;
+    Ok(virtual_block_cpu_limit)
+}
+
+/// Get virtual block net limit
+pub async fn get_virtual_block_net_limit(res: Response) -> Result<u32> {
+    let chain_info = res.json::<ChainInfo>().await?;
+    let virtual_block_net_limit = chain_info.virtual_block_net_limit;
+    Ok(virtual_block_net_limit)
+}
+
+/// Get block cpu limit
+pub async fn get_block_cpu_limit(res: Response) -> Result<u32> {
+    let chain_info = res.json::<ChainInfo>().await?;
+    let block_cpu_limit = chain_info.block_cpu_limit;
+    Ok(block_cpu_limit)
+}
+
+/// Get virtual block net limit
+pub async fn get_block_net_limit(res: Response) -> Result<u32> {
+    let chain_info = res.json::<ChainInfo>().await?;
+    let block_net_limit = chain_info.block_net_limit;
+    Ok(block_net_limit)
+}
+
+/// Get server version string
+pub async fn get_server_version_string(res: Response) -> Result<String> {
+    let chain_info = res.json::<ChainInfo>().await?;
+    let server_version_string = chain_info.server_version_string;
+    Ok(server_version_string)
+}
+
+/// Get fork db head block num
+pub async fn get_fork_db_head_block_num(res: Response) -> Result<u32> {
+    let chain_info = res.json::<ChainInfo>().await?;
+    let fork_db_head_block_num = chain_info.fork_db_head_block_num;
+    Ok(fork_db_head_block_num)
+}
+
+/// Get fork db head block id
+pub async fn get_fork_db_head_block_id(res: Response) -> Result<String> {
+    let chain_info = res.json::<ChainInfo>().await?;
+    let fork_db_head_block_id = chain_info.fork_db_head_block_id;
+    Ok(fork_db_head_block_id)
+}
+
+/// Get server full version string
+pub async fn get_server_full_version_string(res: Response) -> Result<String> {
+    let chain_info = res.json::<ChainInfo>().await?;
+    let server_full_version_string = chain_info.server_full_version_string;
+    Ok(server_full_version_string)
+}
+
+/// Get total cpu weight
+pub async fn get_total_cpu_weight(res: Response) -> Result<String> {
+    let chain_info = res.json::<ChainInfo>().await?;
+    let total_cpu_weight = chain_info.total_cpu_weight;
+    Ok(total_cpu_weight)
+}
+
+/// Get total net weight
+pub async fn get_total_net_weight(res: Response) -> Result<String> {
+    let chain_info = res.json::<ChainInfo>().await?;
+    let total_net_weight = chain_info.total_net_weight;
+    Ok(total_net_weight)
+}
+
+/// Get earliest available block num
+pub async fn get_earliest_available_block_num(res: Response) -> Result<u32> {
+    let chain_info = res.json::<ChainInfo>().await?;
+    let earliest_available_block_num = chain_info.earliest_available_block_num;
+    Ok(earliest_available_block_num)
+}
+
+/// Get last irreversible block time
+pub async fn get_last_irreversible_block_time(res: Response) -> Result<String> {
+    let chain_info = res.json::<ChainInfo>().await?;
+    let last_irreversible_block_time = chain_info.last_irreversible_block_time;
+    Ok(last_irreversible_block_time)
+}
