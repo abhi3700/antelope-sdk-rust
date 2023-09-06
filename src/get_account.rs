@@ -220,7 +220,7 @@ pub struct Account {
 }
 
 /// Get response of account
-pub(crate) async fn get_response_account(account_name: &str) -> Result<Response> {
+pub async fn get_response_account(account_name: &str) -> Result<Response> {
     let url = get_api_url()?;
     let url = format!("{}/v1/chain/get_account", url);
 

@@ -1,13 +1,13 @@
 //! API Endpoints for different Antelope networks: https://eos.antelope.tools/endpoints
 
 // utility
-mod utils;
+pub mod utils;
 
 // get account
-mod get_account;
+pub mod get_account;
 
 // get chain info
-mod get_info;
+pub mod get_info;
 
 // #[cfg(test)]
 // mod tests {
