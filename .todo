@@ -1,9 +1,15 @@
-- move code from `src2/main.rs` to `get_info.rs` file & make it work.
+- `get_block`
+- `get_block_info`
+- `push_transaction`
+- `send_transaction`
 
+- may have to move all the data types into 1 common file - `types.rs`.
 - add mainnet, testnet (jungle, ...) as different networks available to connect to.
 > Till then, just connect with `.env` file.
 
-+ add status code check for different status codes, otherwise it doesn't log any errors in case of wrong status code.
+- Reconsider the visibility of function, struct params. Change to `pub(crate)`, `pub`.
 
++ move code from `src2/main.rs` to `get_info.rs` file & make it work.
++ add status code check for different status codes, otherwise it doesn't log any errors in case of wrong status code.
 + add `examples/` folder to `Cargo.toml` as a workspace.
 + convert `src/main.rs` to a lib crate.

@@ -1,4 +1,4 @@
-use antelope_sdk_rust::get_account::*;
+use antelope_sdk_rust::get_block::{self, *};
 
 #[tokio::main]
 /// main entry point
@@ -6,10 +6,12 @@ use antelope_sdk_rust::get_account::*;
 /// All the values are received here as we await the response and then we further
 /// extract the required values from `response`
 async fn main() {
-    // Usage of `get account` as example
-    match get_response_account("abhieosindia").await {
-        Ok(response) => match get_account(response).await {
-            Ok(acc) => println!("Account info: {:?}", acc),
+    let block_num = "329343132";
+
+    // Usage of `get block` as example
+    match get_response_block(block_num).await {
+        Ok(response) => match get_block(response).await {
+            Ok(block) => println!("Block info: {:?}", block),
             Err(error) => eprintln!("Error getting chain info: {:?}", error),
         },
         Err(error) => eprintln!("Error getting response: {:?}", error),

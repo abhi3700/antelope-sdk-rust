@@ -29,33 +29,9 @@
 //! }
 //! ```
 
+use crate::types::ChainInfo;
 use crate::utils::get_api_url;
-use reqwest::{Client, Response, Result, StatusCode};
-use serde::Deserialize;
-
-#[derive(Debug, Deserialize)]
-pub struct ChainInfo {
-    server_version: String,
-    chain_id: String,
-    head_block_num: u32,
-    last_irreversible_block_num: u32,
-    last_irreversible_block_id: String,
-    head_block_id: String,
-    head_block_time: String,
-    head_block_producer: String,
-    virtual_block_cpu_limit: u32,
-    virtual_block_net_limit: u32,
-    block_cpu_limit: u32,
-    block_net_limit: u32,
-    server_version_string: String,
-    fork_db_head_block_num: u32,
-    fork_db_head_block_id: String,
-    server_full_version_string: String,
-    total_cpu_weight: String,
-    total_net_weight: String,
-    earliest_available_block_num: u32,
-    last_irreversible_block_time: String,
-}
+use reqwest::{Response, Result, StatusCode};
 
 /// Get response
 pub async fn get_response_chain_info() -> Result<Response> {
