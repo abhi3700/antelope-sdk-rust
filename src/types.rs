@@ -117,12 +117,59 @@ pub enum TransactionStatus {
 }
 
 #[derive(Debug, Deserialize)]
+pub struct Authorization {
+    actor: String,
+    permission: String,
+}
+
+// TODO: try out with different responses and check for its
+// consistent field.
+#[derive(Debug, Deserialize)]
+pub struct ActionData {
+    // miner: String,
+    // nonce: u32,
+    // entry: u32,
+}
+
+#[derive(Debug, Deserialize)]
+pub struct Action {
+    account: String,
+    name: String,
+    authorization: Vec<Authorization>,
+    data: ActionData,
+    hex_data: String,
+}
+
+#[derive(Debug, Deserialize)]
+pub struct Transaction {
+    expiration: String,
+    ref_block_num: u32,
+    ref_block_prefix: u32,
+    max_net_usage_words: u32,
+    max_cpu_usage_ms: u32,
+    delay_sec: u32,
+    context_free_actions: Vec<String>,
+    actions: Vec<Action>,
+}
+
+#[derive(Debug, Deserialize)]
+pub struct Trx {
+    id: String,
+    signatures: Vec<String>,
+    compression: String,
+    packed_context_free_data: String,
+    context_free_data: Vec<String>,
+    packed_trx: String,
+    transaction: Transaction,
+}
+
+// TODO: need to check for its consistent struct fields with different blocks
+#[derive(Debug, Deserialize)]
 pub struct TransactionReceipt {
     status: TransactionStatus,
     cpu_usage_us: u64,
-    net_usage_us: u64,
-    // TODO: expand this to a struct
-    trx: String,
+    // net_usage_us: u64,
+    trx: Trx,
 }
 
 #[derive(Debug, Deserialize)]
@@ -136,13 +183,13 @@ pub struct Block {
     previous: String,
     transaction_mroot: String,
     action_mroot: String,
-    schedule_version: String,
+    schedule_version: u32,
     new_producers: Option<ProducerSchedule>,
-    header_extensions: Vec<u32>,
-    new_protocol_features: Vec<ProtocolFeature>,
+    // header_extensions: Vec<u32>,
+    // new_protocol_features: Vec<ProtocolFeature>,
     producer_signature: String,
     transactions: Vec<TransactionReceipt>,
-    block_extensions: Vec<u32>,
+    // block_extensions: Vec<u32>,
     id: String,
     block_num: u32,
     ref_block_prefix: u32,
