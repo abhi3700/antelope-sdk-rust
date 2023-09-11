@@ -13,6 +13,9 @@ pub mod get_block;
 // get chain info
 pub mod get_info;
 
+// get block info
+pub mod get_block_info;
+
 // #[cfg(test)]
 // mod tests {
 //     use super::*;

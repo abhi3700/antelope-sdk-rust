@@ -2,8 +2,9 @@
 //!
 //! Using curl:
 //! ```sh
-//! $ curl -X POST -H "Content-Type: application/json" -d '{"block_num_or_id": "13a1609cafb79cda7ba6f739dea81ee36d56c7ca6733e087b5df13afa9afae75"}' https://eos.greymass.com/v1/chain/get_block`
-//! $ curl -X POST -H "Content-Type: application/json" -d '{"block_num_or_id": "329343132"}' https://eos.greymass.com/v1/chain/get_block`
+//! $ source .env
+//! $ curl -X POST -H "Content-Type: application/json" -d '{"block_num_or_id": "13a1609cafb79cda7ba6f739dea81ee36d56c7ca6733e087b5df13afa9afae75"}' $API_URL/v1/chain/get_block`
+//! $ curl -X POST -H "Content-Type: application/json" -d '{"block_num_or_id": "329343132"}' $API_URL/v1/chain/get_block`
 //! ```
 //!
 //! RPC API: /v1/chain/get_block

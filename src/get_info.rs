@@ -1,6 +1,10 @@
 //! Get information of chain
 //!
-//! Using curl: `curl https://eos.genereos.io/v1/chain/get_info`
+//! Using curl:
+//! ```sh
+//! $ source .env
+//! $ curl https://eos.genereos.io/v1/chain/get_info
+//! ```
 //!
 //! RPC API: /v1/chain/get_info
 //! Sample response:

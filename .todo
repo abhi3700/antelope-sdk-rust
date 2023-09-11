@@ -3,7 +3,9 @@
 - `push_transaction`
 - `send_transaction`
 
-- may have to move all the data types into 1 common file - `types.rs`.
+- create macros for common functions
+
++ may have to move all the data types into 1 common file - `types.rs`.
 - add mainnet, testnet (jungle, ...) as different networks available to connect to.
 > Till then, just connect with `.env` file.
 

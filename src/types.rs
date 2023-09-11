@@ -196,6 +196,21 @@ pub struct Block {
 }
 
 #[derive(Debug, Deserialize)]
+pub struct BlockInfo {
+    block_num: u32,
+    ref_block_num: u32,
+    id: String,
+    timestamp: String,
+    confirmed: u32,
+    previous: String,
+    transaction_mroot: String,
+    action_mroot: String,
+    schedule_version: u32,
+    producer_signature: String,
+    ref_block_prefix: u32,
+}
+
+#[derive(Debug, Deserialize)]
 pub struct Account {
     pub account_name: String,
     pub head_block_num: u32,
