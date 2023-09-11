@@ -16,6 +16,9 @@ pub mod get_info;
 // get block info
 pub mod get_block_info;
 
+// get block (reversible) header state
+pub mod get_block_header_state;
+
 // #[cfg(test)]
 // mod tests {
 //     use super::*;

@@ -30,7 +30,7 @@ use crate::utils::get_api_url;
 use reqwest::{Client, Response, Result, StatusCode};
 use serde_json::json;
 
-/// Get response of block
+/// Get response of block info
 pub async fn get_response_block_info(block_num: u32) -> Result<Response> {
     let url = get_api_url()?;
     let url = format!("{}/v1/chain/get_block_info", url);
@@ -56,11 +56,11 @@ pub async fn get_response_block_info(block_num: u32) -> Result<Response> {
     Ok(res)
 }
 
-/// Get block
-pub async fn get_block(res: Response) -> Result<BlockInfo> {
-    let block = res.json::<BlockInfo>().await?;
+/// Get block info
+pub async fn get_block_info(res: Response) -> Result<BlockInfo> {
+    let block_info = res.json::<BlockInfo>().await?;
 
-    Ok(block)
+    Ok(block_info)
 }
 
 // TODO: create more isolated functions

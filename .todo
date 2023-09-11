@@ -1,5 +1,29 @@
-- `get_block`
-- `get_block_info`
++ `get_block`
++ `get_block_info`
+
+- `get_block_header_state`
+
+```json
+  "active_schedule": {
+    "version": 2085,
+    "producers": [
+      {
+        "producer_name": "atticlabeosb",
+        "authority": [
+          0,
+          {
+            "threshold": 1,
+            "keys": [
+              {
+                "key": "EOS7PfA3A4UdfMu2wKbuXdbHn8EWAxbMnFoFWui4X2zsr2oPwdQJP",
+                "weight": 1
+              }
+            ]
+          }
+        ]
+
+```
+
 - `push_transaction`
 - `send_transaction`
 

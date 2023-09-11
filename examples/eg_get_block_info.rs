@@ -10,7 +10,7 @@ async fn main() {
 
     // Usage of `get block info` as example
     match get_response_block_info(block_num).await {
-        Ok(response) => match get_block(response).await {
+        Ok(response) => match get_block_info(response).await {
             Ok(block) => println!("Block info: {:?}", block),
             Err(error) => eprintln!("Error getting chain info: {:?}", error),
         },

@@ -2,7 +2,7 @@
 
 use serde::Deserialize;
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Deserialize, Clone)]
 pub struct ResourceLimits {
     pub used: u32,
     pub available: u32,
@@ -11,31 +11,31 @@ pub struct ResourceLimits {
     pub current_used: u32,
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Deserialize, Clone)]
 pub struct Key {
     pub key: String,
     pub weight: u64,
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Deserialize, Clone)]
 pub struct Wait {
     pub wait_sec: u64,
     pub weight: u64,
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Deserialize, Clone)]
 pub struct AccountPermission {
     pub actor: String,
     pub permission: String,
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Deserialize, Clone)]
 pub struct Account2 {
     pub weight: u64,
     pub permission: AccountPermission,
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Deserialize, Clone)]
 pub struct Auth {
     pub threshold: u32,
     pub keys: Vec<Key>,
@@ -43,7 +43,7 @@ pub struct Auth {
     pub waits: Vec<Wait>,
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Deserialize, Clone)]
 pub struct Permission {
     // TODO: add enum with Active, Owner type instead of string
     pub perm_name: String,
@@ -52,7 +52,7 @@ pub struct Permission {
     pub linked_actions: Vec<String>,
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Deserialize, Clone)]
 pub struct ResourceOverview {
     pub owner: String,
     pub net_weight: String,
@@ -60,7 +60,7 @@ pub struct ResourceOverview {
     pub ram_bytes: u32,
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Deserialize, Clone)]
 pub struct ResourceDelegation {
     pub from: String,
     pub to: String,
@@ -68,13 +68,13 @@ pub struct ResourceDelegation {
     pub cpu_weight: String,
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Deserialize, Clone)]
 pub struct RefundRequest;
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Deserialize, Clone)]
 pub struct RexInfo;
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Deserialize, Clone)]
 pub struct VoterInfo {
     pub owner: String,
     pub proxy: String,
@@ -88,25 +88,25 @@ pub struct VoterInfo {
     pub reserved3: String,
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Deserialize, Clone)]
 pub struct ProducerAuthorityList {
     pub threshold: u32,
     pub keys: Vec<Key>,
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Deserialize, Clone)]
 pub struct Producer {
     producer_name: String,
     authority: Vec<ProducerAuthorityList>,
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Deserialize, Clone)]
 pub struct ProducerSchedule {
     version: u32,
     producers: Vec<Producer>,
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Deserialize, Clone)]
 #[serde(rename_all = "snake_case")]
 pub enum TransactionStatus {
     Executed,
@@ -116,7 +116,7 @@ pub enum TransactionStatus {
     Expired,
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Deserialize, Clone)]
 pub struct Authorization {
     actor: String,
     permission: String,
@@ -124,14 +124,14 @@ pub struct Authorization {
 
 // TODO: try out with different responses and check for its
 // consistent field.
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Deserialize, Clone)]
 pub struct ActionData {
     // miner: String,
     // nonce: u32,
     // entry: u32,
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Deserialize, Clone)]
 pub struct Action {
     account: String,
     name: String,
@@ -140,7 +140,7 @@ pub struct Action {
     hex_data: String,
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Deserialize, Clone)]
 pub struct Transaction {
     expiration: String,
     ref_block_num: u32,
@@ -152,7 +152,7 @@ pub struct Transaction {
     actions: Vec<Action>,
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Deserialize, Clone)]
 pub struct Trx {
     id: String,
     signatures: Vec<String>,
@@ -164,7 +164,7 @@ pub struct Trx {
 }
 
 // TODO: need to check for its consistent struct fields with different blocks
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Deserialize, Clone)]
 pub struct TransactionReceipt {
     status: TransactionStatus,
     cpu_usage_us: u64,
@@ -172,10 +172,10 @@ pub struct TransactionReceipt {
     trx: Trx,
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Deserialize, Clone)]
 pub struct ProtocolFeature;
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Deserialize, Clone)]
 pub struct Block {
     timestamp: String,
     producer: String,
@@ -195,7 +195,7 @@ pub struct Block {
     ref_block_prefix: u32,
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Deserialize, Clone)]
 pub struct BlockInfo {
     block_num: u32,
     ref_block_num: u32,
@@ -210,7 +210,7 @@ pub struct BlockInfo {
     ref_block_prefix: u32,
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Deserialize, Clone)]
 pub struct Account {
     pub account_name: String,
     pub head_block_num: u32,
@@ -235,7 +235,7 @@ pub struct Account {
     pub eosio_any_linked_actions: Vec<String>,
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Deserialize, Clone)]
 pub struct ChainInfo {
     pub server_version: String,
     pub chain_id: String,
@@ -257,4 +257,29 @@ pub struct ChainInfo {
     pub total_net_weight: String,
     pub earliest_available_block_num: u32,
     pub last_irreversible_block_time: String,
+}
+
+#[derive(Debug, Deserialize, Clone)]
+struct BlockrootMerkle {
+    _active_nodes: Vec<String>,
+    _node_count: u32,
+}
+
+#[derive(Debug, Deserialize, Clone)]
+pub struct BlockHeaderState {
+    id: String,
+    block_num: u32,
+    header: Block,
+    dpos_proposed_irreversible_blocknum: u32,
+    dpos_irreversible_blocknum: u32,
+    bft_irreversible_blocknum: String,
+    pending_schedule_lib_num: String,
+    pending_schedule_hash: String,
+    pending_schedule: ProducerSchedule,
+    active_schedule: ProducerSchedule,
+    blockroot_merkle: BlockrootMerkle,
+    producer_to_last_produced: Vec<(String, u32)>,
+    producer_to_last_implied_irb: Vec<(String, u32)>,
+    block_signing_key: String,
+    confirm_count: Vec<String>,
 }
