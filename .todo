@@ -24,6 +24,41 @@
 
 ```
 
+Github Issue opened here: https://github.com/eosnetworkfoundation/docs/issues/215
+
+Solution, if denied:
+  - implement like this for vector with elements of different data types.
+```rust
+struct CustomType {
+    field1: i32,
+    field2: String,
+}
+
+enum Element {
+    U32(u32),
+    Custom(CustomType),
+}
+
+fn main() {
+    let element1 = Element::U32(42);
+    let element2 = Element::Custom(CustomType {
+        field1: 1,
+        field2: String::from("example"),
+    });
+
+    let list: Vec<Element> = vec![element1, element2];
+
+    for element in list {
+        match element {
+            Element::U32(value) => println!("u32: {}", value),
+            Element::Custom(custom) => println!("CustomType: {{ field1: {}, field2: {} }}", custom.field1, custom.field2),
+        }
+    }
+}
+```
+
+---
+
 - `push_transaction`
 - `send_transaction`
 
