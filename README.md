@@ -16,6 +16,6 @@ $ mdbook serve
 Run examples
 
 ```sh
-cargo run --example get_info
-cargo run --example get_account
+$ cargo run --example get_info
+$ cargo run --example get_account
 ```
